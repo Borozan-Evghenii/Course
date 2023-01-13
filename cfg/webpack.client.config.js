@@ -28,6 +28,23 @@ module.exports = {
         test: /\.[tj]sx?$/, //describe with regex expresion for what files we need to rune a loader ( js, jsx, ts, tsx )
         use: ["ts-loader"], // loader to be used
       },
+      {
+        //rule for what files will be runed loader
+        test: /\.css$/, //describe with regex expresion for what files we need to rune a loader ( js, jsx, ts, tsx )
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                mode: "local",
+                localIdentName: "[name]__[local]--[hash:base64:5]",
+              },
+              onlyLocals: true,
+            },
+          },
+        ], // loader to be used
+      },
     ],
   },
   devtool: setupDevtool(),
